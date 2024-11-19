@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <title>Analysis</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      {% comment %} <h2>Trực quan hóa dữ liệu với Matplotlib & Seaborn trong Django Application</h2>
+      <h3>Histogram</h3> {% endcomment %}
+        {% comment %} {% if hist %}
+          <img src="data:image/png;base64, {{hist|safe}}">
+        {% endif %}
+      <h3>Boxplot</h3>
+        {% if box %}
+          <img src="data:image/png;base64, {{box|safe}}">
+        {% endif %} {% endcomment %}
+        {% comment %} <h3>Bar chart</h3>
+        {% if bar %}
+          <img src="data:image/png;base64, {{bar|safe}}">
+        {% endif %} {% endcomment %}
+      {% comment %} <h3>Line chart</h3>
+        {% if line %}
+          <img src="data:image/png;base64, {{line|safe}}">
+        {% endif %}
+      <h3>Pie chart</h3>
+        {% if pie %}
+          <img src="data:image/png;base64, {{pie|safe}}">
+        {% endif %}
+      <h3>Scatter plot & Regression plot</h3>
+        {% if scatter %}
+          <img src="data:image/png;base64, {{scatter|safe}}">
+        {% endif %} {% endcomment %}
+        <h1>BIỂU ĐỒ SỐ LƯỢNG SẢN PHẨM</h1>
+    
+        <h2>Theo Danh Mục</h2>
+        <img src="data:image/png;base64,{{ bar_category }}" alt="Biểu Đồ Danh Mục">
+    
+        <h2>Theo Thương Hiệu</h2>
+        <img src="data:image/png;base64,{{ bar_brand }}" alt="Biểu Đồ Thương Hiệu">
+      
+        {% comment %} <h1>Biểu Đồ Phân Tích</h1> 
+    
+    <h2>Biểu Đồ Theo Danh Mục</h2>
+    <div>
+        {{ bar_category|safe }}  <!-- Hiển thị biểu đồ theo danh mục -->
+    </div>
+
+    <h2>Biểu Đồ Theo Thương Hiệu</h2>
+    <div>
+        {{ bar_brand|safe }}  <!-- Hiển thị biểu đồ theo thương hiệu -->
+    </div> {% endcomment %}
+  </body>
+</html>

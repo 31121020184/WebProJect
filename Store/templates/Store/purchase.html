@@ -1,0 +1,131 @@
+{% extends "Store/base.html" %}
+{% load static %}
+{% block body %}
+{% load humanize %}
+<!-- Header Inner -->
+<div class="header-inner">
+    <div class="container">
+        <div class="cat-nav-head">
+            <div class="row">
+                <div class="col-lg-12 col-12">
+                    <div class="menu-area">
+                        <!-- Main Menu -->
+                        <nav class="navbar navbar-expand-lg">
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="nav main-menu menu navbar-nav mx-auto">
+                                    <li class="nav-item active"><a class="nav-link" href="{% url 'Store:index' %}">Trang Chủ</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:nuoc-hoa-nam' %}">NƯỚC HOA NAM</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:nuoc-hoa-nu' %}">NƯỚC HOA NỮ</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:unisex' %}">UNISEX</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:thuong-hieu'%}">Thương Hiệu</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:khuyen-mai' %}">Khuyến Mãi</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:tin-tuc' %}">Tin Tức</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:lien-he' %}">Liên Hệ</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <!--/ End Main Menu -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</header>
+<!--/ End Header -->
+<!-- Shopping Cart -->
+
+
+<section class="product-area shop-sidebar shop section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-12">
+                <div class="shop-sidebar">
+                        <!-- Single Widget -->
+                        <div class="single-widget category">
+                            <h3 class="title">Danh mục</h3>
+                            <ul class="categor-list">
+                                <li><a href="{% url 'Store:nuoc-hoa-nam'%}">Nước hoa nam</a></li>
+                                <li><a href="{% url 'Store:nuoc-hoa-nu'%}">Nước hoa nữ</a></li>
+                                <li><a href="{% url 'Store:unisex'%}">Unisex</a></li>
+                            </ul>
+                        </div>	
+                        <div class="single-widget category">
+                            <h3 class="title">Thông tin</h3>
+                            <ul class="categor-list">
+                                <li><a href="{% url 'Store:profile' %}">Tài khoản của tôi</a></li>
+                                <li><a href="{% url 'Store:purchase' %}">Đơn mua</a></li>
+                            </ul>
+                        </div>							
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8 col-12">
+                <div class="shopping-cart section">
+                    <div class="container">
+                        {% if message %}
+                        <div class="heade-purchase-title">
+                             <h6>{{ message }}</h6>
+                        </div>
+                        {% else %}
+                        <p class="heade-purchase">Lịch Sử Mua Hàng</p>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- Shopping Summery -->
+                               
+                                <div class="order-container">
+                                    {% for order in orders %}
+                                    
+                                        <div class="order-header">
+                                            
+                                            <div style="color:red;"><strong>Mã đơn hàng: #{{ order.order_id }}</strong></div>
+                                            <div>Ngày tạo: <span style="font-size: 12px; text-decoration: underline;">{{ order.order_date|date:"d/m/Y H:i:s" }} </span></div>
+                                            <div>Trạng thái: 
+                                                {% if order.paid %}
+                                                    <span style="color: #326e51;text-decoration: underline;">
+                                                        <i class="fas fa-check-circle"></i> Giao hàng thành công
+                                                    </span>
+                                                {% else %}
+                                                    <span style="color:red; text-decoration: underline;">
+                                                        <i class="fas fa-spinner fa-spin"></i> Đơn hàng đang xử lý
+                                                    </span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                
+                                        <!-- Hiển thị danh sách sản phẩm trong đơn hàng -->
+                                        <div class="product-details1">
+                                            {% for product in order.products %}
+                                            <div class="product-info">
+                                                <img src="{{ product.product_image }}" alt="{{ product.product_name }}" class="product-image"> <!-- Ảnh sản phẩm -->
+                                                <div class="product-text">
+                                                        <div class="product-category">Phân loại: {{ product.category_name }}</div>
+                                                        <div class="product-name1">{{ product.product_name }}</div> <!-- Tên sản phẩm -->
+                                                        <div class="product-quantity">x{{ product.quantity }}</div> <!-- Số lượng -->
+                                                    </div>
+                                                    <div class="product-price">Đơn giá: <span style="color: red;">{{ product.price|floatformat:0|intcomma }}</span></div> <!-- Đơn giá -->
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                
+                                        <div class="total-price">
+                                            <span style="color:#000">Thành tiền:</span> <span style="color: red;">{% load humanize %}{{ order.total_price | floatformat:0 | intcomma }}</span> <!-- Tổng tiền -->
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                
+                                <!--/ End Shopping Summery -->
+                            </div>
+                        </div>
+                        <!-- <div class="button6">
+                            <a href="#" class="btn">Mua Lại</a>
+                        </div>  -->
+                        {% endif %}
+                    </div>
+                </div>	
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

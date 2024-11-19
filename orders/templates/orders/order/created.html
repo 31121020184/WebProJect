@@ -1,0 +1,144 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% block body %}
+<div class="header-inner">
+    <div class="container">
+        <div class="cat-nav-head">
+            <div class="row">
+                <div class="col-lg-12 col-12">
+                    <div class="menu-area">
+                        <!-- Main Menu -->
+                        <nav class="navbar navbar-expand-lg">
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="nav main-menu menu navbar-nav mx-auto">
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:index' %}">Trang Chủ</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:nuoc-hoa-nam' %}">NƯỚC HOA NAM</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:nuoc-hoa-nu' %}">NƯỚC HOA NỮ</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:unisex' %}">UNISEX</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:thuong-hieu'%}">Thương Hiệu</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:khuyen-mai' %}">Khuyến Mãi</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:tin-tuc' %}">Tin Tức</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:lien-he' %}">Liên Hệ</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <!--/ End Main Menu -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</header>
+
+<section class="shop checkout section">
+    <div class="container">
+        {% if not order_success %}
+        <form class="form" method="POST" action="{% url 'orders:order_create'%}">
+           <!--Form --> 
+            <div class="row">
+                <div class="col-lg-8 col-12">
+                    <div class="checkout-form">
+                        <h2>Thông tin khách hàng</h2>
+                        {% comment %} <p style="color: red;">Vui lòng <a href="{% url 'store:signin' %}"><b style="color: blue;text-decoration: underline"> đăng ký</b></a> để việc đặt hàng nhanh chóng và dễ dàng hơn</p> {% endcomment %}
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <input type="hidden" value="{{username}}" name="username"/>
+                                    <label>Họ<span>*</span></label>
+                                    {{form.last_name}}
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Tên<span>*</span></label>
+                                    {{form.first_name}}
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Email<span>*</span></label>
+                                    {{form.email}}
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Điện thoại<span>*</span></label>
+                                    {{form.phone}}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Địa chỉ giao hàng<span>*</span></label>
+                                    {{form.address}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <div class="order-details">
+                        <div class="signle-widget">
+                            <h2>THÔNG TIN GIỎ HÀNG</h2>
+                            <div class="content">
+                                <ul>
+                                    {% for item in cart %}
+                                        <li>
+                                            {{item.quantity}}x {{item.product.name}}
+                                            <span>{% load humanize %}{{item.total_price|floatformat:0|intcomma}} đ</span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                                <ul>
+                                    <li><hr/></li>
+                                    <li>Tạm tính: <span style="color: red;">{% load humanize %}{{cart.get_total_price|floatformat:0|intcomma}} đ</span></li>
+                                    <li>(+) Giao hàng: <span style="color:red;">0 đ</span></li>
+                                    <li class="last"> Tổng đơn hàng: <span style="color: red;">{% load humanize %}{{cart.get_total_price|floatformat:0|intcomma}} đ</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="single-widget get-button">
+                            <div class="content">
+                                <div class="button">
+                                    <button type="submit" class="btn">Đặt hàng</button>
+                                    {% csrf_token %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        {% else %}
+        <!-- End Form -->
+    </div>
+</section>
+<section class="shop checkout section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-12">
+                <div class="checkout-form">
+                    <h2>Cảm ơn quý khách</h2>
+                    <p>Quý khách <span>{{order.last_name}} {{order.first_name}}</span> đã đặt hàng thành công!!!. Đơn hàng của quý khách có mã số <span style="color: red;">#{{order.id}}{{ order.created|date:"Ymd" }}</span></p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-12">
+                <div class="order-details">
+                     <!-- Oreder Widget -->
+                    <div class="single-widget">
+                        <h2>THÔNG TIN GIAO HÀNG (Dự kiến)</h2>
+                        <div class="content">
+                            <ul>
+                                <li>Phone: {{order.phone}}</li>
+                                <li>Email: {{order.email}}</li>
+                                <li>Địa chỉ giao hàng: {{order.address}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

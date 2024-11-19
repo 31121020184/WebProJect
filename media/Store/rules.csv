@@ -1,0 +1,15 @@
+,antecedents,consequents,antecedent support,consequent support,support,confidence,lift,leverage,conviction,zhangs_metric
+0,frozenset({20}),frozenset({22}),0.5,0.25,0.25,0.5,2.0,0.125,1.5,1.0
+1,frozenset({22}),frozenset({20}),0.25,0.5,0.25,1.0,2.0,0.125,inf,0.6666666666666666
+2,frozenset({25}),frozenset({20}),0.25,0.5,0.25,1.0,2.0,0.125,inf,0.6666666666666666
+3,frozenset({20}),frozenset({25}),0.5,0.25,0.25,0.5,2.0,0.125,1.5,1.0
+4,frozenset({27}),frozenset({20}),0.5,0.5,0.25,0.5,1.0,0.0,1.0,0.0
+5,frozenset({20}),frozenset({27}),0.5,0.5,0.25,0.5,1.0,0.0,1.0,0.0
+6,frozenset({27}),frozenset({22}),0.5,0.25,0.25,0.5,2.0,0.125,1.5,1.0
+7,frozenset({22}),frozenset({27}),0.25,0.5,0.25,1.0,2.0,0.125,inf,0.6666666666666666
+8,"frozenset({27, 20})",frozenset({22}),0.25,0.25,0.25,1.0,4.0,0.1875,inf,1.0
+9,"frozenset({27, 22})",frozenset({20}),0.25,0.5,0.25,1.0,2.0,0.125,inf,0.6666666666666666
+10,"frozenset({20, 22})",frozenset({27}),0.25,0.5,0.25,1.0,2.0,0.125,inf,0.6666666666666666
+11,frozenset({27}),"frozenset({20, 22})",0.5,0.25,0.25,0.5,2.0,0.125,1.5,1.0
+12,frozenset({20}),"frozenset({27, 22})",0.5,0.25,0.25,0.5,2.0,0.125,1.5,1.0
+13,frozenset({22}),"frozenset({27, 20})",0.25,0.25,0.25,1.0,4.0,0.1875,inf,1.0

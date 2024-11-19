@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Dataframe</h1>
+        <h3>Tạo Dataframe với array/dictionary</h3>
+        {{df_views_like_html|safe}}
+        <h4>Lấy cột views từ dataframe</h4>
+        {{df_views_like_now|safe}}
+        <h4>Cập nhật index chuỗi</h4> </h4>
+        {{df_views_likes_stridx|safe}}
+        <h3>Tạ dataframe tư csv </h3>
+        <h4>Thông tin chung</h4>
+        {{data_info|safe}}
+        <h4>head</h4>
+        {{data_head|safe}}
+        <h4>tail</h4>
+        {{data_tail|safe}}
+        <h5>Số phần tử của series trên : {{data_shape}}</h5>
+        <h3>THàm thống kê </h3>
+        {{stats_html|safe}}
+        <h3>Product </h3>
+        {{product_html|safe}}
+        <h4>Gruop count</h4>
+        {{product_count_html|safe}}
+        <h4>Gruop count sum</h4>
+        {{product_count_sum_html|safe}}
+        <h4>Pivot table</h4>
+        {{pivot2_html|safe}}
+        <h3>Đọc từ table </h3>
+      </div>
+</body>
+</html>

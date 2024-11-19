@@ -1,0 +1,150 @@
+{% extends "Store/base.html" %}
+{% load static %}
+{% block body %}
+<div class="header-inner">
+    <div class="container">
+        <div class="cat-nav-head">
+            <div class="row">
+                <div class="col-lg-12 col-12">
+                    <div class="menu-area">
+                        <!-- Main Menu -->
+                        <nav class="navbar navbar-expand-lg">
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="nav main-menu menu navbar-nav mx-auto">
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:index' %}">Trang Chủ</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:nuoc-hoa-nam' %}">NƯỚC HOA NAM</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:nuoc-hoa-nu' %}">NƯỚC HOA NỮ</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:unisex' %}">UNISEX</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:thuong-hieu'%}">Thương Hiệu</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:khuyen-mai' %}">Khuyến Mãi</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:tin-tuc' %}">Tin Tức</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:lien-he' %}">Liên Hệ</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <!--/ End Main Menu -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</header>
+
+<section id="contact-us" class="contact-us section">
+	<div class="container">
+		<div class="contact-head">
+			<div class="row">
+				<div class="col-lg-8 col-12">
+					<div class="form-main">
+						{% if not registered %}
+						<div class="title">
+							<h4>Đăng ký</h4>
+						</div>
+						<form class="form" method="POST" action="{% url 'Store:dang-ky' %}">
+							{% csrf_token %}
+							<div class="row">
+								<div class="col-lg-6 col-12">
+									<div class="form-group">
+										<label>Họ <span>*</span></label>
+										{{form_user.last_name}}
+									</div>
+								</div>
+								<div class="col-lg-6 col-12">
+									<div class="form-group">
+										<label>Tên<span>*</span></label>
+										{{form_user.first_name}}
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="form-group message">
+										<label>Username<span>*</span></label>
+										{{form_user.username}}
+									</div>
+								</div>
+								<div class="col-lg-6 col-12">
+									<div class="form-group">
+										<label>Password<span>*</span></label>
+										{{form_user.password}}
+									</div>
+								</div>
+								<div class="col-lg-6 col-12">
+									<div class="form-group">
+										<label>Confirm password<span>*</span></label>
+										{{form_user.confirm}}
+									</div>
+								</div>
+
+								<div class="col-lg-6 col-12">
+									<div class="form-group">
+										<label>Email<span>*</span></label>
+										{{form_user.email}}
+									</div>
+								</div>
+								<div class="col-lg-6 col-12">
+									<div class="form-group">
+										<label>Điện thoại<span>*</span></label>
+										{{form_por.phone}}
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="form-group message">
+										<label>Địa chỉ<span>*</span></label>
+										{{form_por.address}}
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="form-group message">
+										<label>Avatar<span>*</span></label>
+										{{form_por.image}}
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="form-group button">
+										<button type="submit" class="btn ">Đăng ký</button>
+									</div>
+								</div>
+							</div>
+						</form>
+						{% else %}
+						<div class="title">
+							<h7 style="color:red; font-size:17px;">{% if registered %}Đăng ký tài khoản thành công. Hãy <a href="{% url 'Store:dang-nhap' %}" style="color:blue;text-decoration: underline">đăng nhập</a> để tiếp tục trải nghiệm mua sắm!{% endif %}</h6>
+								<h7 style="color:red;">{% if form_user.errors %} {{form_user.errors}} {% endif %}</h7>
+								<h7 style="color:red;">{% if form_por.errors %} {{form_por.errors}} {% endif %}</h7>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+				<div class="col-lg-4 col-12">
+					<div class="single-head">
+						<div class="single-info">
+							<i class="fa fa-phone"></i>
+							<h4 class="title">Điện thoại:</h4>
+							<ul>
+								<li>(+84) 963 214 317</li>
+							</ul>
+						</div>
+						<div class="single-info">
+							<i class="fa fa-envelope-open"></i>
+							<h4 class="title">Email:</h4>
+							<ul>
+								<li><a href="kimtana72@gmail.com">kimtana72@gmail.com</a></li>
+							</ul>
+						</div>
+						<div class="single-info">
+							<i class="fa fa-location-arrow"></i>
+							<h4 class="title">Địa chỉ:</h4>
+							<ul>
+								<li> Phường 15, Q.Tân Bình, Tp.HCM </li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--/ End Contact -->
+
+<!--/ End Map Section -->
+{% endblock %}

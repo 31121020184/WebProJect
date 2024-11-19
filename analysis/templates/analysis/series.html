@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Series</h1>
+        <h3>Tạo series với index tự động</h3>
+        {{views1|safe}}
+        <h3>Tạo series với index do ng viết tạo : likes</h3>
+        {{likes1|safe}}
+        <h3>Series ánh xạ từ Series likes trên : </h3>
+        {{double_likes|safe}}
+        <h3>Seriesđọc dữ liệu từ file : </h3>
+        <h4>Head</h4>
+        {{headviews2|safe}}
+        <h4>Tail</h4>
+        {{tailviews2|safe}}
+        <h5>Số phần tử của series trên : {{len_views2}}</h5>
+        {{stats_html|safe}}
+      </div>
+</body>
+</html>

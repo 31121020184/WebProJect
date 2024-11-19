@@ -1,0 +1,58 @@
+{% extends "Store/base.html" %}
+{% load static %}
+{% block body %}
+<div class="header-inner">
+    <div class="container">
+        <div class="cat-nav-head">
+            <div class="row">
+                <div class="col-lg-12 col-12">
+                    <div class="menu-area">
+                        <!-- Main Menu -->
+                        <nav class="navbar navbar-expand-lg">
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="nav main-menu menu navbar-nav mx-auto">
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:index' %}">Trang Chủ</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:nuoc-hoa-nam' %}">NƯỚC HOA NAM</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:nuoc-hoa-nu' %}">NƯỚC HOA NỮ</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:unisex' %}">UNISEX</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:thuong-hieu'%}">Thương Hiệu</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:khuyen-mai' %}">Khuyến Mãi</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:tin-tuc' %}">Tin Tức</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:lien-he' %}">Liên Hệ</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <!--/ End Main Menu -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</header>
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bread-inner text-center">
+                    <h4>NƯỚC HOA</h4> 
+                    <ul class="bread-list">
+                        <li><a href="{% url 'Store:index' %}">Trang chủ<i class="ti-arrow-right"></i></a></li>
+                        <li class="active"><a href="{% url 'Store:nuoc-hoa' %}">NƯỚC HOA</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumbs -->
+<div class="container wrapper-container"><div class="object-detail">
+    <!-- content -->
+<div class="object-detail-content">
+<p><span style="color: rgb(51, 51, 51); font-family: Roboto, Geneva, sans-serif; font-size: 17px; background-color: rgb(255, 255, 255);">
+    Nước hoa được xem như là một chất xúc tác khơi gợi cảm xúc của con người. Nó không chỉ mang đến hương thơm mà còn là những câu chuyện được kể theo cảm nhận riêng biệt của từng người dùng.&nbsp;</span><br data-mce-bogus="1"></p>		
+</div>
+</div>
+</div>
+{% endblock %}

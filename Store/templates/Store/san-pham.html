@@ -1,0 +1,143 @@
+{% extends "Store/base.html" %}
+{% load static %}
+{% block body %}
+<div class="header-inner">
+    <div class="container">
+        <div class="cat-nav-head">
+            <div class="row">
+                <div class="col-lg-12 col-12">
+                    <div class="menu-area">
+                        <!-- Main Menu -->
+                        <nav class="navbar navbar-expand-lg">
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="nav main-menu menu navbar-nav mx-auto">
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:index' %}">Trang Chủ</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:nuoc-hoa-nam' %}">NƯỚC HOA NAM</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:nuoc-hoa-nu' %}">NƯỚC HOA NỮ</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:unisex' %}">UNISEX</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:thuong-hieu'%}">Thương Hiệu</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:khuyen-mai' %}">Khuyến Mãi</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:tin-tuc' %}">Tin Tức</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'Store:lien-he' %}">Liên Hệ</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <!--/ End Main Menu -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</header>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+			<div class="quickview-title">
+				<div class="quickview-img d-flex justify-content-center align-items-center">
+					   <img class="quickview-img-1" src="{{product.image.url}}" alt="{{product.name}}">
+					</div>
+					<div class="product-together">
+						{% if list_asc_products %}
+							<div class="row">
+								<div class="col-12 product-together-title">
+									Có thể bạn quan tâm!
+								</div>
+							</div>
+							<div class="row">
+								{% for product in list_asc_products %}
+								<div class="col-3 product-together-detail">
+									<a href="{% url 'Store:san-pham' product.pk %}">
+										<img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+									</a>
+									<h6 class="product-name">
+										<a href="{% url 'Store:san-pham' product.pk %}">{{ product.name }}</a>
+									</h6>
+								</div>
+								{% endfor %}
+							</div>
+						{% endif %}
+						</div>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+				<div class="quickview-content">
+					<h3 class="quickview-content-title">{{product.name}}</h3>
+					<div class="quickview-ratting-review">
+						<div class="quickview-ratting-wrap">
+							{{product.viewed}} views
+						</div>
+						<div class="quickview-stock">
+							<span><i class="fa fa-check-circle-o"></i> Đang mở bán</span>
+						</div>
+					</div>
+					<p class="quickview-content-price"> {% load humanize %}{{product.price|floatformat:0|intcomma}} đ - {% load humanize %}{{product.price_origin|floatformat:0|intcomma}} đ</p>
+					<h3 class="quickview-content-category">Thông tin sản phẩm</h3>
+					<div class="quickview-peragraph">
+					    <p><strong>- Thương hiệu:</strong> {{thuonghieu.name}}</p>
+						<p><strong>- Xuất Xứ: </strong>{{thuonghieu.country}}</p>
+						<p><strong>- Năm ra mắt: </strong>{{product.nam_san_xuat}}</p>
+						<p><strong>- Giới tính: </strong>{{product.gioi_tinh}}</p>
+						<p><strong>- Nhóm hương: </strong>{{product.nhom_nuoc_hoa}}</p>
+						<p><strong>- Hương đầu: </strong>{{product.huong_dau}}</p>
+						<p><strong>- Hương giữa: </strong>{{product.huong_giua}}</p>
+						<p><strong>- Hương cuối: </strong>{{product.huong_cuoi}}</p>
+						<p><strong>- Nhóm hương: </strong>{{product.nhom_nuoc_hoa}}</p>
+						<p><strong>- Phong cách: </strong>{{product.phong_cach}}</p>
+						<p><strong>- Độ lưu hương: </strong>{{product.thoi_gian_luu_huong}}</p>
+						<p><strong>- Dung tích: </strong>{{product.dung_tich}}</p>
+						<p><strong>- Nồng độ: </strong>{{product.nong_do}}</p>
+					</div>
+					<div class="quantity">
+						<!-- Input Order -->
+						<div class="input-group">
+							<div class="button minus">
+								<button type="button" class="btn btn-primary btn-number" disabled="disabled"
+									data-type="minus" data-field="quant[1]">
+									<i class="ti-minus"></i>
+								</button>
+							</div>
+							<input type="text" name="quant[1]" class="input-number" data-min="1" data-max="1000"
+								value="1">
+							<div class="button plus">
+								<button type="button" class="btn btn-primary btn-number" data-type="plus"
+									data-field="quant[1]">
+									<i class="ti-plus"></i>
+								</button>
+							</div>
+						</div>
+						<!--/ End Input Order -->
+					</div>
+					<div class="add-to-cart">
+						<form action="{% url 'cart:cart_add' product.id %}" method="POST">
+							{% csrf_token %}
+							<input type="hidden" name="quantity" value="1">
+						    <input type="submit" value="Chọn mua" class="btn"> 
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-xs-12 col-md-12">
+				<div class="tab-box">
+					<!-- Nav tabs -->
+				        <ul class="nav nav-tabs nav-pills" id="pills-tab" role="tablist">
+							<li class="nav-item" role="presentation">
+						        <a class="nav-link active" id="pills-content-tab" data-bs-toggle="pill" data-bs-target="#pills-content" type="button" role="tab" aria-controls="pills-content" aria-selected="true">CHI TIẾT SẢN PHẨM</a>
+					       </li>
+				      </ul>
+					<!-- Tab panes -->
+				   <div class="tab-content" id="pills-tabContent">
+							<div class="tab-pane fade show active" id="pills-content" role="tabpanel">
+						<p>{{product.content|safe}}</p>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
